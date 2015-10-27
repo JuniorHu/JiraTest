@@ -72,7 +72,7 @@ public class FileOperations {
   FileOutputStream o=null;  
   try {  
    o = new FileOutputStream(fileName);  
-      o.write(content.getBytes("utf-8"));  
+      o.write(content.getBytes("GBK"));  
       o.close();  
 //   mm=new RandomAccessFile(fileName,"rw");  
 //   mm.writeBytes(content);  

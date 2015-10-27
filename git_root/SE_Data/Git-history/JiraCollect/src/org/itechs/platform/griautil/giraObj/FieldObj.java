@@ -10,6 +10,11 @@ public class FieldObj {
 	private String assignee;
 	private String status;
 	private String summary;
+	private String timespent;
+	private String timeoriginalestimate;
+	private String timeestimate;
+	private String duedate;
+	private String resolutiondate;
 
 	public String getIssuetype() {
 		return this.issuetype;
@@ -65,7 +70,47 @@ public class FieldObj {
 	public void setAssignee(String str) {
 		this.assignee = str;
 	}
+	
+	public String getTimeSpent (){
+		return this.timespent;
+	}
+	
+	public void setTimeSpent(String str){
+		this.timespent = str;
+	}
+	
+	public String getTimeEstimate (){
+		return this.timeestimate;
+	}
 
+	public void setTimeEstimate(String str){
+		this.timeestimate = str;
+	}
+	
+	public String getTimeOriginalEstimate (){
+		return this.timeoriginalestimate;
+	}
+	
+	public void setTimeOriginalEstimate(String str){
+		this.timeoriginalestimate = str;
+	}
+	
+	public String getDueDate (){
+		return this.duedate;
+	}
+	
+	public void setDueDate(String str){
+		this.duedate = str;
+	}
+	
+	public String getResolutionDate (){
+		return this.resolutiondate;
+	}
+	
+	public void setResolutionDate(String str){
+		this.resolutiondate = str;
+	}	
+	
 	public String getStatus() {
 		return this.status;
 	}

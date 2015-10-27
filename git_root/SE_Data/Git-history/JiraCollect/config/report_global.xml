@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<config>  
+    <fileTypes>
+	   <file>h</file>
+	   <file>xml</file>
+	   <file>c</file>
+	   <file>js</file>
+	   <file>json</file>
+	</fileTypes>  
+</config>  

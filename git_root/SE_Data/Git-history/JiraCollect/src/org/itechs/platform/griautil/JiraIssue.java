@@ -100,8 +100,10 @@ public class JiraIssue {
 				if (method.getName().startsWith("set")) {
 
 					String field = method.getName();
-					field = field.substring(field.indexOf("set") + 3);
-					field = field.toLowerCase().charAt(0) + field.substring(1);
+//					field = field.substring(field.indexOf("set") + 3);
+//					field = field.toLowerCase().charAt(0) + field.substring(1);
+					field = field.substring(field.indexOf("set") + 3).toLowerCase();
+					field = field.charAt(0) + field.substring(1);
 					method.invoke(javabean, new Object[] {
 
 					data.get(field)
@@ -119,9 +121,9 @@ public class JiraIssue {
 
 	public static void main(String[] arfd) {
 		
-        for (int nub=0;nub<=132; nub++)
+        for (int nub=0;nub<=2; nub++)
         {
-		String fileName = "D:/data/jira/data"+nub+".txt";
+		String fileName = "f:/data/jira/data"+nub+".txt";
 		FileUtil fu = new FileUtil();
 		String rawIssue = fu.readFileByIssue(fileName);
 		JiraIssue ji = new JiraIssue();
@@ -173,18 +175,32 @@ public class JiraIssue {
 			MySQLUtil my = new MySQLUtil(url,user,pwd);
 			//my.createConn();
 			//the following is the jira data to store in db
-			String tbName="issue";
+			//String tbName="issue";
+			String tbName="jira";
 			String sql="";
-			
+			//新增加的五个对象
 			String ityp=issueType;
 			String ides=fo.getSummary();
 			String idate=fo.getCreated();
+			String itsp = fo.getTimeSpent();
+		    String itores = fo.getTimeOriginalEstimate();
+			String ites = fo.getTimeEstimate();
+			String iddate = fo.getDueDate();
+			String iresodate = fo.getResolutionDate();
 			String icre=creator;
 			String iass=assignee;
 			String istu=status;
 			
-			sql+="insert ignore into "+tbName+"(isskey,isstype,issdes,isstime,isscreator,issassign,issstatus)"+
-			" values"+"('"+ikey+"',"+"'"+ ityp+"',"+"'"+ides+"',"+"'"+idate+"',"+"'"+icre+"',"+"'"+iass+"',"+"'"+istu+"'"+")";
+//			System.out.println("Created: "+ idate);
+//			System.out.println("timespent1: "+ itsp);
+//			System.out.println("timespent2: "+ itores);
+//			System.out.println("timespent3: "+ ites);
+//			System.out.println("duedate: "+ iddate);
+//			System.out.println("resodate: "+ iresodate);
+			
+			sql+="insert ignore into "+tbName+"(isskey,isstype,issdes,isstime,isscreator,issassign,issstatus,isstimesp,isstimeores,isstimees,issddate,issresodate)"+
+			" values"+"('"+ikey+"',"+"'"+ ityp+"',"+"'"+ides+"',"+"'"+idate+"',"+"'"+icre+"',"+"'"+iass+"',"+"'"+istu+"',"
+			+"'"+itsp+"',"+"'"+itores+"',"+"'"+ites+"',"+"'"+iddate+"',"+"'"+iresodate+"'"+")";
 			my.updateData(sql);
 			
 			//System.out.println(sql);
